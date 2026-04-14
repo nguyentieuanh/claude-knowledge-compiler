@@ -34,7 +34,7 @@
 **Option A — Install script (recommended, installs to `~/.dkc`):**
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/YOUR_USERNAME/claude-knowledge-compiler/main/install.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/nguyentieuanh/claude-knowledge-compiler/main/install.sh)
 ```
 
 The script downloads the latest release, extracts it, optionally installs LLM SDKs, and adds the Claude Code alias to your shell config automatically.
@@ -42,7 +42,7 @@ The script downloads the latest release, extracts it, optionally installs LLM SD
 **Option B — Git clone (for development or self-hosting):**
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/claude-knowledge-compiler.git ~/.dkc
+git clone https://github.com/nguyentieuanh/claude-knowledge-compiler.git ~/.dkc
 cd ~/.dkc
 npm install && npm run build
 ```
@@ -367,7 +367,7 @@ MIT - see [LICENSE](LICENSE)
 **Cách A — Install script (khuyến nghị, cài vào `~/.dkc`):**
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/YOUR_USERNAME/claude-knowledge-compiler/main/install.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/nguyentieuanh/claude-knowledge-compiler/main/install.sh)
 ```
 
 Script tự động: tải release, giải nén, hỏi cài LLM SDKs, thêm alias vào shell config.
@@ -375,7 +375,7 @@ Script tự động: tải release, giải nén, hỏi cài LLM SDKs, thêm alia
 **Cách B — Git clone (để phát triển hoặc tự host):**
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/claude-knowledge-compiler.git ~/.dkc
+git clone https://github.com/nguyentieuanh/claude-knowledge-compiler.git ~/.dkc
 cd ~/.dkc
 npm install && npm run build
 ```

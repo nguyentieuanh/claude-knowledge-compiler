@@ -9,8 +9,8 @@ coverage/
 # Personal AI memory — not for version control
 memory/
 
-# Personal Claude Code settings with hardcoded local paths
-.claude/settings.local.json
+# Claude Code internal directories (dev workflow, not for contributors)
+.claude/
 
 # Project-specific knowledge base (generated per-project, not part of plugin source)
 .knowledge/

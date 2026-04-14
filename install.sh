@@ -10,7 +10,7 @@
 set -euo pipefail
 
 VERSION="1.0.0"
-GITHUB_REPO="YOUR_USERNAME/claude-knowledge-compiler"
+GITHUB_REPO="nguyentieuanh/claude-knowledge-compiler"
 DEFAULT_DIR="$HOME/.dkc"
 INSTALL_DIR="$DEFAULT_DIR"
 LOCAL_TARBALL=""
