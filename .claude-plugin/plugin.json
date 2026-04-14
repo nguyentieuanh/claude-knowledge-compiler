@@ -1,0 +1,37 @@
+{
+  "name": "developer-knowledge-compiler",
+  "version": "1.0.0",
+  "description": "Compile developer knowledge across coding sessions. Silently accumulates what you know and where you struggle into a persistent, searchable knowledge base.",
+  "author": {
+    "name": "DKC"
+  },
+  "commands": ["./commands"],
+  "skills": ["./skills"],
+  "userConfig": {
+    "knowledgeBasePath": {
+      "type": "string",
+      "title": "Knowledge Base Path",
+      "description": "Relative path to .knowledge/ folder within the project",
+      "default": ".knowledge"
+    },
+    "autoCompile": {
+      "type": "boolean",
+      "title": "Auto-compile on session end",
+      "description": "Automatically compile knowledge when the session ends",
+      "default": true
+    },
+    "autoCompileMinMessages": {
+      "type": "number",
+      "title": "Minimum messages for auto-compile",
+      "description": "Skip auto-compile if session has fewer messages than this threshold",
+      "default": 5,
+      "min": 1
+    },
+    "language": {
+      "type": "string",
+      "title": "Output language",
+      "description": "Language for generated knowledge base content: 'en' (English) or 'vi' (Vietnamese)",
+      "default": "en"
+    }
+  }
+}

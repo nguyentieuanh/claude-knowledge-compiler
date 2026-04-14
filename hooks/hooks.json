@@ -1,0 +1,72 @@
+{
+  "description": "DKC hooks: inject knowledge context on session start, compile knowledge on session end, track file changes",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT:-$HOME/.dkc}/dist/hooks/session-start.js\"",
+            "timeout": 10,
+            "statusMessage": "Loading knowledge context..."
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT:-$HOME/.dkc}/dist/hooks/session-end-collect.js\"",
+            "timeout": 15,
+            "statusMessage": "Collecting session data..."
+          },
+          {
+            "type": "agent",
+            "model": "claude-sonnet-4-6",
+            "timeout": 120,
+            "prompt": "Use the Bash tool to run the DKC compile pipeline:\n\nnode \"${CLAUDE_PLUGIN_ROOT:-$HOME/.dkc}/dist/cli/index.js\" reflect --from-pending --project-root \"$CLAUDE_PROJECT_DIR\" --quiet\n\nIf the command succeeds, report in 2-3 lines what was compiled (session ID, concepts created/updated, files tracked). If it fails, report the error message.",
+            "statusMessage": "Compiling session knowledge..."
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT:-$HOME/.dkc}/dist/hooks/post-tool-use.js\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT:-$HOME/.dkc}/dist/hooks/pre-compact.js\"",
+            "timeout": 5,
+            "statusMessage": "Saving knowledge context..."
+          }
+        ]
+      }
+    ],
+    "PostCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT:-$HOME/.dkc}/dist/hooks/post-compact.js\"",
+            "timeout": 5,
+            "statusMessage": "Restoring knowledge context..."
+          }
+        ]
+      }
+    ]
+  }
+}

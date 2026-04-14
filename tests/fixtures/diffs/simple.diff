@@ -1,0 +1,28 @@
+commit abc123def456
+Author: Developer <dev@example.com>
+Date:   2026-04-08T14:02:30.000Z
+
+    refactor: use dependency injection in auth middleware
+
+diff --git a/src/middleware/auth.ts b/src/middleware/auth.ts
+index 1234567..abcdefg 100644
+--- a/src/middleware/auth.ts
++++ b/src/middleware/auth.ts
+@@ -1,7 +1,14 @@
+-export function authMiddleware(req, res, next) {
+-  const token = req.headers.authorization;
+-  // validate token
+-  next();
+-}
++import type { TokenValidator } from '../services/token-validator.js';
++import type { Request, Response, NextFunction } from 'express';
++
++export function createAuthMiddleware(tokenValidator: TokenValidator) {
++  return (req: Request, res: Response, next: NextFunction) => {
++    const token = req.headers.authorization;
++    if (!tokenValidator.validate(token)) {
++      return res.status(401).json({ error: 'Unauthorized' });
++    }
++    next();
++  };
++}
